@@ -1,31 +1,23 @@
 import random
+import string
 
-print("Welcome in game Stone, Paper, Scissor!")
-print("1. Rock")
-print("2. Paper")
-print("3. Scissor")
-print("4. Rock beats Scissor")
-print("5. Paper beats Rock")
-print("6. Scissor beats Paper")
-print("7. Exit anytime from the game\n")
+def generate_password(length=12):
+    # Characters to choose from
+    characters = string.ascii_letters + string.digits + string.punctuation
+    
+    # Generate a random password
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
 
-choices = {
-    "1": "rock",
-    "2": "paper",
-    "3": "scissor"
-}
-
-while True:
-    choice = input("Enter a number (1 to 3 or 7): ")
-
-    if choice == "7":
-        print("You chose to exit the game. Thanks for playing!")
-        break
-
-    if choice not in choices:
-        print("Invalid input. Please enter 1, 2, 3, or 7.")
-        continue
-
+# Ask user for password length
+try:
+    length = int(input("Enter the desired password length: "))
+    if length < 4:
+        print("Password length should be at least 4 characters.")
+    else:
+        print("Generated Password:", generate_password(length))
+except ValueError:
+    print("Please enter a valid number!")
     user_choice = choices[choice]
     computer_choice = random.choice(["rock", "paper", "scissor"])
 
